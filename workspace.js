@@ -713,7 +713,7 @@ cpdefine("inline:com-chilipeppr-workspace-sparkys-grbl", ["chilipeppr_ready"], f
                 touchPlateInstance: null,
                 init: function() {
                     this.touchPlateBtn = $('#com-chilipeppr-ws-gcode-menu .touchplate-button');
-                    this.touchPlateDiv = $('#com-chilipeppr-ws-touchplateXYZ');
+                    this.touchPlateDiv = $('#com-chilipeppr-ws-touchplate');
                     this.setupBtn();
                     console.log("done instantiating touchPlate add-on widget");
                 },
@@ -746,7 +746,7 @@ cpdefine("inline:com-chilipeppr-workspace-sparkys-grbl", ["chilipeppr_ready"], f
                             "#com-chilipeppr-ws-touchplateXYZ",
                             "http://fiddle.jshell.net/SparkysWIdgets/58uwe3ox/show/light/",
                             function() {
-                                require(["inline:com-chilipeppr-widget-touchplateXYZ"], function(touchPlate) {
+                                require(["inline:com-chilipeppr-widget-touchplate"], function(touchPlate) {
                                     that.touchPlateInstance = touchPlate;
                                     console.log("touchPlate instantiated. touchPlateInstance:", that.touchPlateInstance);
                                     that.touchPlateInstance.init();
