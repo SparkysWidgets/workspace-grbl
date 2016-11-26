@@ -996,6 +996,68 @@ cpdefine("inline:com-chilipeppr-workspace-sparkys-grbl", ["chilipeppr_ready"], f
             };
             touchPlateXObj.init();
 
+            var touchPlateYObj = {
+                touchPlateYBtn: null,
+                touchPlateYDiv: null,
+                touchPlateYInstance: null,
+                init: function() {
+                    this.touchPlateYBtn = $('#com-chilipeppr-ws-gcode-menu .touchplatey-button');
+                    this.touchPlateYDiv = $('#com-chilipeppr-ws-touchplatey');
+                    this.setupBtn();
+                    console.log("done instantiating touchPlatey add-on widget");
+                },
+                setupBtn: function() {
+                    this.touchPlateYBtn.click(this.toggletouchPlateY.bind(this));
+                },
+                toggletouchPlateY: function() {
+                    if (this.touchPlateYDiv.hasClass("hidden")) {
+                        // unhide
+                        this.showtouchPlateY();
+                    }
+                    else {
+                        this.hidetouchPlateY();
+                    }
+                },
+                showtouchPlateY: function(callback) {
+                    this.touchPlateYDiv.removeClass("hidden");
+                    this.touchPlateYBtn.addClass("active");
+
+                    // see if instantiated already
+                    // if so, just activate
+                    if (this.touchPlateYInstance != null) {
+                        //this.gpioInstance.activateWidget();
+                        if (callback) callback();
+                    }
+                    else {
+                        // otherwise, dynamic load
+                        var that = this;
+                        chilipeppr.load(
+                            "#com-chilipeppr-ws-touchplatey",
+                            "http://fiddle.jshell.net/SparkysWIdgets/mLnfnL9t/show/light/",
+                            function() {
+                                require(["inline:com-chilipeppr-widget-touchplatey"], function(touchPlateY) {
+                                    that.touchPlateYInstance = touchPlateY;
+                                    console.log("touchPlateY instantiated. touchPlateYInstance:", that.touchPlateYInstance);
+                                    that.touchPlateYInstance.init();
+                                    //eagleInstance.activateWidget();
+                                    if (callback) callback();
+                                });
+                            }
+                        );
+                    }
+                    $(window).trigger('resize');
+                },
+                hidetouchPlateY: function() {
+                    this.touchPlateYDiv.addClass("hidden");
+                    this.touchPlateYBtn.removeClass("active");
+                    if (this.touchPlateYInstance != null) {
+                        //this.gpioInstance.unactivateWidget();
+                    }
+                    $(window).trigger('resize');
+                },
+            };
+            touchPlateYObj.init();
+
             // Element / Drag Drop
             // Load the dragdrop element into workspace toolbar
             // http://jsfiddle.net/chilipeppr/Z9F6G/
