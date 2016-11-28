@@ -744,7 +744,7 @@ cpdefine("inline:com-chilipeppr-workspace-sparkys-grbl", ["chilipeppr_ready"], f
                         var that = this;
                         chilipeppr.load(
                             "#com-chilipeppr-ws-touchplate",
-                            "http://fiddle.jshell.net/jarret/kvab65ot/show/light/",
+                            "http://fiddle.jshell.net/SparkysWIdgets/qg4gy0jt/show/light/",
                             function() {
                                 require(["inline:com-chilipeppr-widget-touchplate"], function(touchPlate) {
                                     that.touchPlateInstance = touchPlate;
